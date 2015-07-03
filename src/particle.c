@@ -1,6 +1,8 @@
 #include "../include/particle.h"
 #include <math.h>
 
+#define PRINTPAIR(label,pair) printf("%s = (%f,%f)\n", label, pair.x, pair.y);
+
 double Vec2D_modulus(Vec2D v)
 {
 	return sqrt(v.x * v.x + v.y * v.y);
@@ -44,8 +46,8 @@ void updateParticle(Particle* p, double timeStep)
 	p->momentum.x = p->vel.x * p->mass; 
 	p->momentum.y = p->vel.y * p->mass;
 
-	printf("Pos = (%f, %f)\n", p->pos.x, p->pos.y);
-	printf("Force = (%f, %f)\n", p->force.x, p->force.y);
+	PRINTPAIR("Pos", p->pos);
+	PRINTPAIR("Force", p->force);
 
 	return;
 }
