@@ -9,7 +9,8 @@
 
 #define WIDTH 640
 #define HEIGHT 480
-
+#define TIME_STEP 1
+#define FRAME_RATE 60 
 
 static SDL_Surface* GS_MAIN_SURFACE = NULL;
 
@@ -93,11 +94,11 @@ void simulate()
             /* update the screen */
             SDL_FillRect(GS_MAIN_SURFACE, 0, SDL_MapRGB(GS_MAIN_SURFACE->format, 0, 0, 0)); //Clean screen
 
-            updateNetwork(0.015);
+            updateNetwork(TIME_STEP);
             drawNetwork();
 
             SDL_Flip(GS_MAIN_SURFACE);
-            SDL_Delay(15);
+            SDL_Delay(1000/FRAME_RATE);
     } 
 }
 
