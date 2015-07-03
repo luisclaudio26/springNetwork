@@ -3,6 +3,27 @@
 
 #define PRINTPAIR(label,pair) printf("%s = (%f,%f)\n", label, pair.x, pair.y);
 
+//-----------------------------------
+//------------ INTERNAL -------------
+//-----------------------------------
+typedef struct {
+	double mod, ang;
+} Polar2D;
+
+static Polar2D distance(Particle* p1, Particle* p2)
+{
+	Polar2D out;
+	Vec2D diff;
+
+	diff.x = p1->pos.x - p2->pos.x;
+	diff.y = p1->pos.y - p2->pos.y;
+
+	out.mod = Vec2D_modulus(diff);
+	out.ang = Vec2D_angle(diff);
+
+	return out;
+}
+
 double Vec2D_modulus(Vec2D v)
 {
 	return sqrt(v.x * v.x + v.y * v.y);
@@ -10,11 +31,18 @@ double Vec2D_modulus(Vec2D v)
 
 double Vec2D_angle(Vec2D v)
 {
-	return 0.0;
+	return atan2(v.y, v.x);
 }
 
+//-------------------------------------------
+//------------ FROM PARTICLE.H --------------
+//-------------------------------------------
 void interact(Particle* p1, Particle* p2)
 {
+
+
+
+
 	return;
 }
 
