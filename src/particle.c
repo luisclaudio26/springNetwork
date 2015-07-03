@@ -1,4 +1,15 @@
 #include "../include/particle.h"
+#include <math.h>
+
+double Vec2D_modulus(Vec2D v)
+{
+	return sqrt(v.x * v.x + v.y * v.y);
+}
+
+double Vec2D_angle(Vec2D v)
+{
+	return 0.0;
+}
 
 void interact(Particle* p1, Particle* p2)
 {
@@ -18,7 +29,23 @@ void initializeParticle(Particle* p, double mass, double radius)
 
 void updateParticle(Particle* p, double timeStep)
 {
-	p->pos.x += 0.5;
-	p->pos.y += 0.5;
+	Vec2D accel; //Acceleration
+	accel.x = p->force.x / p->mass;
+	accel.y = p->force.y / p->mass;
+
+	p->vel.x += accel.x * timeStep;
+	p->vel.y += accel.y * timeStep;
+
+	p->pos.x += p->vel.x * timeStep;
+	p->pos.y += p->vel.y * timeStep;
+
+	p->energy = p->mass * Vec2D_modulus(p->vel) / 2;
+	
+	p->momentum.x = p->vel.x * p->mass; 
+	p->momentum.y = p->vel.y * p->mass;
+
+	printf("Pos = (%f, %f)\n", p->pos.x, p->pos.y);
+	printf("Force = (%f, %f)\n", p->force.x, p->force.y);
+
 	return;
 }

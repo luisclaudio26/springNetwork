@@ -5,6 +5,9 @@ typedef struct {
 	double x, y;
 } Vec2D;
 
+double Vec2D_modulus(Vec2D v);
+double Vec2D_angle(Vec2D v); //in radians
+
 typedef struct {
 	Vec2D force; //Sum of all forces acting in this particle
 	Vec2D pos;
