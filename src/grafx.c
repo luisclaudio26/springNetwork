@@ -100,12 +100,12 @@ void simulate()
 /* -----------------------------------------
  * ------------- FROM GRAFX.H --------------
  * ----------------------------------------- */
-void drawPoint(double x, double y, int radius)
+void drawPoint(double x, double y, int radius, unsigned int color)
 {
-	plotXY(GS_MAIN_SURFACE, (int)round(x), (int)round(y), YELLOW, 0);
+	plotXY(GS_MAIN_SURFACE, (int)round(x), (int)round(y), color, 0);
 }
 
-void drawLine(double x1, double y1, double x2, double y2)
+void drawLine(double x1, double y1, double x2, double y2, unsigned int color)
 {
 	return;	
 }

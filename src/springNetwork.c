@@ -1,4 +1,5 @@
 #include "../include/springNetwork.h"
+#include "../include/parameters.h"
 
 static Particle P1, P2;
 
@@ -9,8 +10,8 @@ void drawNetwork()
 {
 	//printf("Drawing\n");
 
-	drawPoint(P1.pos.x, P1.pos.y, P1.radius);
-	drawPoint(P2.pos.x, P2.pos.y, P2.radius);
+	drawPoint(P1.pos.x, P1.pos.y, P1.radius, YELLOW);
+	drawPoint(P2.pos.x, P2.pos.y, P2.radius, RED);
 }
 
 void updateNetwork(double timeStep)

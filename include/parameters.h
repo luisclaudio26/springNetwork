@@ -13,5 +13,6 @@
 #define HEIGHT 480
 
 #define YELLOW 0xFFFF00
+#define RED 0xFF0000
 
 #endif
