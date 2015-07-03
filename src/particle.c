@@ -46,8 +46,10 @@ void updateParticle(Particle* p, double timeStep)
 	p->momentum.x = p->vel.x * p->mass; 
 	p->momentum.y = p->vel.y * p->mass;
 
-	PRINTPAIR("Pos", p->pos);
-	PRINTPAIR("Force", p->force);
+	#ifdef DEBUG
+		PRINTPAIR("Pos", p->pos);
+		PRINTPAIR("Force", p->force);
+	#endif
 
 	return;
 }

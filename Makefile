@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-std=c99 -w -g
+CFLAGS=-std=c99 -w -g -DDEBUG
 LIB=-lSDL -lm
 SRC=src
 INC=include
