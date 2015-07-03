@@ -1,16 +1,11 @@
 #include "../include/grafx.h"
 #include "../include/springNetwork.h"
+#include "../include/parameters.h"
 #include <SDL/SDL.h>
 #include <math.h>
 #include <stdio.h>
 
 #define NULL (void*)0
-#define YELLOW 0xFFFF00
-
-#define WIDTH 640
-#define HEIGHT 480
-#define TIME_STEP 1
-#define FRAME_RATE 60 
 
 static SDL_Surface* GS_MAIN_SURFACE = NULL;
 
@@ -94,7 +89,7 @@ void simulate()
             /* update the screen */
             SDL_FillRect(GS_MAIN_SURFACE, 0, SDL_MapRGB(GS_MAIN_SURFACE->format, 0, 0, 0)); //Clean screen
 
-            updateNetwork(TIME_STEP);
+            updateNetwork(TIME_STEP_PER_FRAME);
             drawNetwork();
 
             SDL_Flip(GS_MAIN_SURFACE);

@@ -1,9 +1,9 @@
 #include "../include/particle.h"
+#include "../include/parameters.h"
 #include <math.h>
 
 #define PRINTPAIR_R(label,pair) printf("%s = (%f,%f)\n", label, pair.x, pair.y);
 #define PRINTPAIR_P(label,pair) printf("%s = (%f,%f)\n", label, pair.mod, pair.ang);
-#define PI 3.14
 
 //-----------------------------------------------------
 //------------ INTERNAL - VECTORIAL STUFF -------------
@@ -102,7 +102,7 @@ static void spring(Particle* p1, Particle* p2,
 void interact(Particle* p1, Particle* p2)
 {
 	//Test values - change this for some constant after
-	spring(p1, p2, 200.0, 0.5, 0.01);
+	spring(p1, p2, SPRING_LENGTH, SPRING_COEFFICIENT, LOSS_OF_ENERGY);
 }
 
 void initializeParticle(Particle* p, double mass, double radius)
