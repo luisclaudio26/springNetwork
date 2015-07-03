@@ -45,7 +45,25 @@ double Vec2D_angle(Vec2D v)
 //-------------------------------------------
 //------------ INTERNAL - OTHER -------------
 //-------------------------------------------
-void spring(Particle* p1, Particle* p2, 
+static double loseEnergy(Particle* p, double LoE)
+{
+	p->energy = (1.0-LoE) * p->energy;
+
+	//Calculate how much velocity will decrease due to
+	//loss of energy
+	Polar2D newVel;
+	newVel.mod = sqrt(2 * p->energy / p->mass);
+	newVel.ang = Vec2D_angle(p->vel);
+
+	//Convert to rectangular coordinates
+	polar2Rect(newVel, &p->vel);
+
+	//Update momentum here?
+}
+
+
+
+static void spring(Particle* p1, Particle* p2, 
 			double springLength, double springCoeff, double LoE)
 {
 	//Calculate deformation
@@ -70,8 +88,9 @@ void spring(Particle* p1, Particle* p2,
 	p2->force.x += -elasticForce_r.x;
 	p2->force.y += -elasticForce_r.y;
 
-	//CALCULATE LOSS OF ENERGY
-	PRINTPAIR_P("Spring", elasticForce_p);
+	//Simulate loss of energy due to spring imperfection
+	loseEnergy(p1, LoE);
+	loseEnergy(p2, LoE);
 }
 
 //-------------------------------------------
@@ -80,7 +99,7 @@ void spring(Particle* p1, Particle* p2,
 void interact(Particle* p1, Particle* p2)
 {
 	//Test values - change this for some constant after
-	spring(p1, p2, 200.0, 0.1, 1.0);
+	spring(p1, p2, 200.0, 0.1, 0.5);
 }
 
 void initializeParticle(Particle* p, double mass, double radius)
