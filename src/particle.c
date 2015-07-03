@@ -32,9 +32,14 @@ static void polar2Rect(Polar2D src, Vec2D* dst)
 	dst->y = src.mod * sin(src.ang);
 }
 
+static double Vec2D_QuadMod(Vec2D v)
+{
+	return v.x * v.x + v.y * v.y;
+}
+
 double Vec2D_modulus(Vec2D v)
 {
-	return sqrt(v.x * v.x + v.y * v.y);
+	return sqrt( Vec2D_QuadMod(v) );
 }
 
 double Vec2D_angle(Vec2D v)
@@ -60,8 +65,6 @@ static double loseEnergy(Particle* p, double LoE)
 
 	//Update momentum here?
 }
-
-
 
 static void spring(Particle* p1, Particle* p2, 
 			double springLength, double springCoeff, double LoE)
@@ -99,7 +102,7 @@ static void spring(Particle* p1, Particle* p2,
 void interact(Particle* p1, Particle* p2)
 {
 	//Test values - change this for some constant after
-	spring(p1, p2, 200.0, 0.1, 0.5);
+	spring(p1, p2, 200.0, 0.5, 0.01);
 }
 
 void initializeParticle(Particle* p, double mass, double radius)
@@ -125,7 +128,7 @@ void updateParticle(Particle* p, double timeStep)
 	p->pos.x += p->vel.x * timeStep;
 	p->pos.y += p->vel.y * timeStep;
 
-	p->energy = p->mass * Vec2D_modulus(p->vel) / 2;
+	p->energy = p->mass * Vec2D_QuadMod(p->vel) / 2;
 	
 	p->momentum.x = p->vel.x * p->mass; 
 	p->momentum.y = p->vel.y * p->mass;
