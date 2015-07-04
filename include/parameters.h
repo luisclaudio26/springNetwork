@@ -9,8 +9,9 @@
 //------- Grafx
 #define FRAME_RATE 60
 #define TIME_STEP_PER_FRAME 1
-#define WIDTH 640
-#define HEIGHT 480
+#define WIDTH 1000
+#define HEIGHT 900
+#define CM_PER_PIXEL 0.5
 
 #define YELLOW 0xFFFF00
 #define RED 0xFF0000

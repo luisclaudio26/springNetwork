@@ -9,10 +9,10 @@
 
 static SDL_Surface* GS_MAIN_SURFACE = NULL;
 
-static void plotXY(SDL_Surface *image, int x, int y, Uint32 color, int dotSize)
+static void plotXY(SDL_Surface *image, int x, int y, Uint32 color, int dotRadius)
 {
-    for(int i = -dotSize; i <= dotSize; i++)
-        for(int j = -dotSize; j <= dotSize; j++)
+    for(int i = -dotRadius; i <= dotRadius; i++)
+        for(int j = -dotRadius; j <= dotRadius; j++)
         {
             if(x+i > 0 && x+i < WIDTH && y+j > 0 && y+j < HEIGHT)
             {
@@ -21,7 +21,7 @@ static void plotXY(SDL_Surface *image, int x, int y, Uint32 color, int dotSize)
             }
         }
 
-    if(dotSize == 0)
+    if(dotRadius == 0)
     {
         if(x > 0 && x < WIDTH && y > 0 && y < HEIGHT)
         {
@@ -102,7 +102,11 @@ void simulate()
  * ----------------------------------------- */
 void drawPoint(double x, double y, int radius, unsigned int color)
 {
-	plotXY(GS_MAIN_SURFACE, (int)round(x), (int)round(y), color, 0);
+    double radiusPixel = radius / CM_PER_PIXEL;
+    double xPixel = x / CM_PER_PIXEL;
+    double yPixel = y / CM_PER_PIXEL;
+
+	plotXY(GS_MAIN_SURFACE, (int)round(xPixel), (int)round(yPixel), color, (int)round(radiusPixel));
 }
 
 void drawLine(double x1, double y1, double x2, double y2, unsigned int color)
