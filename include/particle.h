@@ -16,6 +16,7 @@ typedef struct {
 	double radius;
 	double energy;
 	Vec2D momentum;
+	double e; //Coefficient of restitution when it collides with walls
 } Particle;
 
 void interact(Particle* p1, Particle* p2);

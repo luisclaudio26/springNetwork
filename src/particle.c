@@ -113,6 +113,8 @@ void initializeParticle(Particle* p, double mass, double radius)
 	p->force = p->vel = p->pos = p->momentum = (Vec2D){0.0 , 0.0};
 	p->energy = 0.0;
 
+	p->e = GLOBAL_E;
+
 	return;
 }
 
@@ -121,6 +123,7 @@ void updateParticle(Particle* p, double timeStep)
 	Vec2D accel; //Acceleration
 	accel.x = p->force.x / p->mass;
 	accel.y = p->force.y / p->mass;
+	accel.y += GRAVITY;
 
 	p->vel.x += accel.x * timeStep;
 	p->vel.y += accel.y * timeStep;

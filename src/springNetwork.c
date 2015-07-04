@@ -1,8 +1,8 @@
 #include "../include/springNetwork.h"
 #include "../include/parameters.h"
 
-#define GRID_WIDTH 10
-#define GRID_HEIGHT 10
+#define GRID_WIDTH 1
+#define GRID_HEIGHT 1
 
 static Particle P[GRID_WIDTH][GRID_HEIGHT];
 
@@ -33,6 +33,11 @@ void updateNetwork(double timeStep)
 	Particle* aux = &P;
 	for(int i = 0; i < GRID_WIDTH * GRID_HEIGHT; i++, aux++)
 		updateParticle(aux, timeStep);
+
+	//Apply force in random particle
+	/*
+	P[0][0].force.x += 4.0;
+	P[0][0].force.y += 1.0; */
 }
 
 void initializeNetwork()

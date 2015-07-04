@@ -109,8 +109,8 @@ void drawPoint(double x, double y, int radius, unsigned int color)
 	plotXY(GS_MAIN_SURFACE, (int)round(xPixel), (int)round(yPixel), color, (int)round(radiusPixel));
 }
 
-void drawLine(double x1, double y1, double x2, double y2, unsigned int color)
+void drawLine(double x0, double y0, double x1, double y1, unsigned int color)
 {
-	return;	
+    return;
 }
 
