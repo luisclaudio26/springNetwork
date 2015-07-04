@@ -96,6 +96,16 @@ static void spring(Particle* p1, Particle* p2,
 	loseEnergy(p2, LoE);
 }
 
+static void collideWithWalls(Particle* p1)
+{
+	if(p1->pos.y > FLOOR)
+	{
+		p1->vel.y = -p1->vel.y;
+		p1->pos.y = FLOOR + 0.0001; //Small deplacement just to get it out of collision range
+		loseEnergy(p1, p1->e);
+	}
+}
+
 //-------------------------------------------
 //------------ FROM PARTICLE.H --------------
 //-------------------------------------------
@@ -120,6 +130,9 @@ void initializeParticle(Particle* p, double mass, double radius)
 
 void updateParticle(Particle* p, double timeStep)
 {
+	if(COLLIDE_WITH_WALLS)
+		collideWithWalls(p);
+
 	Vec2D accel; //Acceleration
 	accel.x = p->force.x / p->mass;
 	accel.y = p->force.y / p->mass;
