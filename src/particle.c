@@ -133,10 +133,12 @@ void updateParticle(Particle* p, double timeStep)
 	if(COLLIDE_WITH_WALLS)
 		collideWithWalls(p);
 
+	//Weight force
+	p->force.y += GRAVITY * p->mass;
+
 	Vec2D accel; //Acceleration
 	accel.x = p->force.x / p->mass;
 	accel.y = p->force.y / p->mass;
-	accel.y += GRAVITY;
 
 	p->vel.x += accel.x * timeStep;
 	p->vel.y += accel.y * timeStep;

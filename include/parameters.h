@@ -9,11 +9,11 @@
 #define CM_PER_PIXEL 1.0
 
 //------- Particle
-#define LOSS_OF_ENERGY 0.7
-#define SPRING_LENGTH 40
-#define SPRING_COEFFICIENT 10.0
+#define LOSS_OF_ENERGY 0.1
+#define SPRING_LENGTH 50
+#define SPRING_COEFFICIENT 30.0
 #define COLLIDE_WITH_WALLS 1
-#define GLOBAL_E 0. //Global coefficient of restitution when it collides with wall
+#define GLOBAL_E 0.01 //Global coefficient of restitution when it collides with wall
 #define GRAVITY 1.0
 #define FLOOR 600 //Define floor position
 
